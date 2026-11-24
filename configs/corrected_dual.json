@@ -1,0 +1,7 @@
+{
+  "protocol_revision": "independent_robot_object_normal_5cm_v2",
+  "eligible_conditions": ["dual_mirror", "dual_panel"],
+  "outward_offset_m": 0.05,
+  "panel_height_m": 1.3,
+  "panel_thickness_m": 0.004
+}

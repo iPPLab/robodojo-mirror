@@ -1,0 +1,22 @@
+{
+  "name": "RoboDojo-Mirror",
+  "protocol_revision": "paper",
+  "tasks": [
+    "cover_blocks", "fold_clothes", "general_pickup", "press_by_number",
+    "insert_tubes", "swap_T", "stack_blocks", "stack_bowls"
+  ],
+  "conditions": ["no_mirror", "single_mirror", "dual_mirror", "mirror_tabletop"],
+  "controls": {
+    "single_panel": "single_mirror",
+    "dual_panel": "dual_mirror"
+  },
+  "control_policies": ["wall_oss", "awomo"],
+  "policies": {
+    "wall_oss": {"name": "WALL-OSS", "layouts_per_task": 5, "runs_per_layout": 3},
+    "vpp2": {"name": "VPP2", "layouts_per_task": 5, "runs_per_layout": 3},
+    "awomo": {"name": "Awomo-0.5", "layouts_per_task": 5, "runs_per_layout": 3},
+    "rex": {"name": "Rex-M1 Preview", "layouts_per_task": 5, "runs_per_layout": 3},
+    "astra": {"name": "GPT-6-Astra", "layouts_per_task": 5, "runs_per_layout": 1}
+  },
+  "bootstrap_replicates": 20000
+}

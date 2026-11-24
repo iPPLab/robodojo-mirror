@@ -1,0 +1,17 @@
+{
+  "task_set": "default",
+  "conditions": [
+    "no_mirror",
+    "single_mirror",
+    "dual_mirror",
+    "mirror_tabletop"
+  ],
+  "scene": {
+    "clearance_m": 0.05,
+    "height_m": null,
+    "thickness_m": 0.004,
+    "mirror_spp": 128,
+    "capture_rgb": true,
+    "record_contacts": true
+  }
+}
