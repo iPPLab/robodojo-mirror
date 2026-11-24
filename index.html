@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RoboDojo-Mirror measures how reflections affect robot policies in matched manipulation scenes.">
+  <meta name="theme-color" content="#ffffff">
+  <title>RoboDojo-Mirror · Embodied AI Fails the Mirror Test</title>
+  <link rel="icon" href="assets/pku-emblem.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <main id="main">
+    <section id="top" class="hero" aria-labelledby="title">
+      <picture class="hero-background" aria-hidden="true">
+        <source media="(min-width: 850px) and (min-aspect-ratio: 6/5)"
+                srcset="assets/hero-current-desktop.webp" width="1440" height="864">
+        <img src="assets/hero-current.webp" width="576" height="1024"
+             fetchpriority="high" alt="">
+      </picture>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="wordmark">
+            <img src="assets/robot-mirror.png" width="54" height="54" alt="">
+            <span>RoboDojo–Mirror</span>
+          </p>
+          <h1 id="title">Embodied AI Fails the <em>Mirror Test</em></h1>
+          <p class="subtitle">How a Simple Mirror Breaks Robot Policies</p>
+          <div class="byline">
+            <p>Xuanchen Liu<sup>*</sup>, Hejun Zhang<sup>*</sup>, Boxuan Dong, Ying Wu, Heshuai Li, Wen Gao, Yonghong Tian, Weihao Yu</p>
+            <div class="affiliations">
+              <span class="university">
+                <img src="assets/pku-emblem.png" width="34" height="34" alt="">
+                <span>Peking University</span>
+              </span>
+              <span class="lab"><strong>iPPLab</strong><span>Intelligence++</span></span>
+            </div>
+            <p class="contribution"><small><sup>*</sup>Equal contribution</small></p>
+          </div>
+        </div>
+      </div>
+      <a class="hero-scroll" href="#abstract" aria-label="Read the abstract"></a>
+    </section>
+
+    <section id="abstract" class="section" aria-labelledby="abstract-title" tabindex="-1">
+      <div class="section-heading">
+        <h2 id="abstract-title">Abstract</h2>
+      </div>
+      <div class="abstract-copy">
+        <p>Can a simple mirror expose the limitations of today's robotic manipulation policies? Inspired by the mirror self-recognition test in animal cognition, we investigate whether robot policies can reliably manipulate physical objects in scenes containing their reflections. We introduce RoboDojo-Mirror, a benchmark built on RoboDojo that preserves task objectives, success criteria, and policy checkpoints while comparing a mirror-free baseline with single-mirror, dual-mirror, and mirrored-tabletop conditions.</p>
+        <p>Across five policies spanning Vision-Language-Action models, World Action Models, and agentic policies, every mirror condition reduces aggregate success rates: averaged over the three conditions, the drop ranges from 10.8 to 56.7 percentage points across policies, and it reaches 62.5 points on the mirrored tabletop. Because a mirror is also a physical obstacle, we compare it against geometrically matched non-reflective panels; 50–88% of mirror-specific failures occur without recorded robot–panel contact, so direct collisions alone do not explain the degradation.</p>
+        <p>Trajectory and contact analyses instead reveal recurring behaviors consistent with phantom targeting of reflected objects and spatial mislocalization of real ones. Targeted diagnostics further characterize grasping near reflections, policy-dependent pushing progress, and physical-target interaction under main-camera occlusion. Real-robot experiments with π<sub>0.5</sub> and FastWAM also show lower overall success rates under the upright-mirror and mirrored-tabletop conditions. These findings reveal a shared vulnerability to reflective environments across diverse robot policies and motivate reflection-aware evaluation of embodied intelligence.</p>
+      </div>
+    </section>
+
+    <section id="project-video" class="section" aria-labelledby="project-video-title">
+      <div class="section-heading">
+        <h2 id="project-video-title">Project video</h2>
+      </div>
+      <video controls playsinline preload="none" width="1920" height="1080"
+             poster="assets/video/robodojo-mirror-teaser-v4-poster.webp"
+             aria-label="RoboDojo-Mirror project overview"
+             src="assets/video/robodojo-mirror-teaser-v4.mp4"></video>
+    </section>
+
+    <section id="protocol" class="section protocol-section" aria-labelledby="protocol-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="protocol-title">Benchmark design</h2>
+          <p>For each RoboDojo task, we build four scenes from matched initial layouts. For each policy, we pair layouts and policy seeds across the four conditions, run closed-loop rollouts, and use the original RoboDojo evaluator to score the rollouts.</p>
+        </div>
+      </div>
+      <figure class="paper-figure">
+        <a href="assets/benchmark-method.webp" target="_blank" rel="noopener" aria-label="Open full-size benchmark method figure in a new tab">
+          <img src="assets/benchmark-method.webp" width="1920" height="913" loading="lazy" decoding="async" alt="RoboDojo tasks and policy inputs feed matched four-condition scene construction, optional panel controls, closed-loop rollouts and native evaluation.">
+        </a>
+        <figcaption><strong>Evaluation protocol.</strong> Policies are evaluated on matched task layouts under four scene conditions, with nonreflective panel controls for selected policies.</figcaption>
+      </figure>
+      <dl class="protocol">
+        <div><dt>Match starting states</dt><dd>Within each policy and task, pair layouts and policy seeds across conditions. Keep the task instructions and native evaluation rules.</dd></div>
+        <div><dt>Vary the scene</dt><dd>Compare no mirror, one vertical mirror, two perpendicular mirrors and a reflective tabletop. WALL-OSS and Awomo also use geometry-matched nonreflective panels.</dd></div>
+        <div><dt>Score each run</dt><dd>Use five layouts per task and three runs per layout for each open-weight policy. Astra uses one run per layout. Macro-average task success and scores across eight tasks.</dd></div>
+      </dl>
+    </section>
+
+    <section id="scenes" class="section scene-section" aria-labelledby="scene-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="scene-title">Eight tasks, four scenes</h2>
+        </div>
+        <label class="task-label">Task
+          <select id="task">
+            <option value="cover_blocks">Cover blocks</option>
+            <option value="fold_clothes">Fold clothes</option>
+            <option value="general_pickup">General pickup</option>
+            <option value="press_by_number">Press by number</option>
+            <option value="insert_tubes">Tube insertion</option>
+            <option value="swap_T">Swap T</option>
+            <option value="stack_blocks">Block stacking</option>
+            <option value="stack_bowls">Bowl stacking</option>
+          </select>
+        </label>
+      </div>
+      <div class="scene-grid">
+        <figure data-condition="no_mirror">
+          <img src="assets/scenes/cover_blocks--no_mirror.webp" width="640" height="400" alt="Cover blocks, no mirror">
+          <figcaption>No mirror</figcaption>
+        </figure>
+        <figure data-condition="single_mirror">
+          <img src="assets/scenes/cover_blocks--single_mirror.webp" width="640" height="400" alt="Cover blocks, single mirror">
+          <figcaption>Single mirror</figcaption>
+        </figure>
+        <figure data-condition="dual_mirror">
+          <img src="assets/scenes/cover_blocks--dual_mirror.webp" width="640" height="400" alt="Cover blocks, dual mirrors">
+          <figcaption>Dual mirrors</figcaption>
+        </figure>
+        <figure data-condition="mirror_tabletop">
+          <img src="assets/scenes/cover_blocks--mirror_tabletop.webp" width="640" height="400" alt="Cover blocks, mirrored tabletop">
+          <figcaption>Mirrored tabletop</figcaption>
+        </figure>
+      </div>
+      <p class="visually-hidden" id="scene-status" aria-live="polite"></p>
+    </section>
+
+    <section id="results" class="section results-section" aria-labelledby="results-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="results-title">Benchmark results</h2>
+          <p>Five policies evaluated on the same eight tasks. Each policy is compared with its own no-mirror baseline.</p>
+        </div>
+        <div class="metric-control" role="group" aria-label="Results metric">
+          <button type="button" aria-pressed="true" data-metric="success">Success rate</button>
+          <button type="button" aria-pressed="false" data-metric="score">Task score</button>
+        </div>
+      </div>
+      <p class="table-hint">Scroll to see all scene conditions.</p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Benchmark results table">
+        <table>
+          <caption class="visually-hidden" id="metric-caption">Success rate (%) by scene condition</caption>
+          <thead><tr>
+            <th scope="col">Policy</th><th scope="col">No mirror</th><th scope="col">Single mirror</th>
+            <th scope="col">Dual mirrors</th><th scope="col">Mirrored tabletop</th><th scope="col">Mean drop</th>
+          </tr></thead>
+          <tbody id="results-body">
+            <tr><th scope="row">WALL-OSS</th><td>67.5</td><td>21.7</td><td>15.0</td><td>25.0</td><td>46.9</td></tr>
+            <tr><th scope="row">VPP2</th><td>72.5</td><td>33.3</td><td>35.0</td><td>27.5</td><td>40.6</td></tr>
+            <tr><th scope="row">Awomo-0.5</th><td>60.8</td><td>15.8</td><td>6.7</td><td>10.0</td><td>50.0</td></tr>
+            <tr><th scope="row">Rex-M1 Preview</th><td>66.7</td><td>15.8</td><td>10.0</td><td>4.2</td><td>56.7</td></tr>
+            <tr><th scope="row">GPT-6-Astra</th><td>65.0</td><td>62.5</td><td>52.5</td><td>47.5</td><td>10.8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption" id="metric-note" aria-live="polite">Success rates are percentages. Mean drop is the average decrease across the three mirror conditions, in percentage points.</p>
+    </section>
+
+
+    <section id="diagnostics" class="section" aria-labelledby="diagnostics-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="diagnostics-title">Diagnostic examples</h2>
+          <p>Recorded examples of how policies behave around mirrors.</p>
+        </div>
+      </div>
+      <div class="video-grid">
+        <div class="video-row">
+          <figure id="mirror-control">
+            <div class="diagnostic-media" data-completed-at="1.92">
+              <video controls playsinline preload="metadata" width="1280" height="720" aria-label="WALL-OSS general pickup, dual mirrors versus geometry-matched panels" src="assets/video/mirror-panel-clean.mp4"></video>
+              <span class="video-outcome video-outcome-right" role="status" hidden><span class="visually-hidden">Panel condition: </span>Success</span>
+            </div>
+            <figcaption>
+              <h3>Mirror versus panel</h3>
+              <p>WALL-OSS general pickup from the paper evaluation. Dual mirrors are on the left, geometry-matched panels on the right. Both views were rendered from recorded states.</p>
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="diagnostic-media" data-completed-at="ended">
+              <video controls playsinline preload="metadata" width="960" height="480" aria-label="Astra cover blocks under main-camera target occlusion, with both wrist views" src="assets/video/target-occlusion-clean.mp4"></video>
+              <span class="video-outcome" role="status" hidden>Success</span>
+            </div>
+            <figcaption>
+              <h3>Target occlusion</h3>
+              <p>The main view shows reflections of the occluded targets. Astra’s wrist views on the right show which physical targets remain directly visible.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="video-row">
+          <figure>
+            <div class="diagnostic-media" data-completed-at="18.92">
+              <video controls playsinline preload="metadata" width="960" height="480" aria-label="VPP2 Push-T diagnostic with an I-shaped contour and a single mirror" src="assets/video/push-t-diagnostic-clean.mp4"></video>
+              <span class="video-outcome" role="status" hidden>Separation complete</span>
+            </div>
+            <figcaption>
+              <h3>Push-T</h3>
+              <p>VPP2 pushes an I-shaped object beside a vertical mirror. The real and reflected contours are separated in this diagnostic setup.</p>
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="diagnostic-media" data-completed-at="12.36">
+              <video controls playsinline preload="metadata" width="1280" height="960" aria-label="VPP2 tube insertion on original and mirrored tabletops, with main and right wrist cameras" src="assets/video/tube-grasping-tabletop-clean.mp4"></video>
+              <span class="video-outcome video-outcome-left" role="status" hidden><span class="visually-hidden">Original tabletop: </span>Success</span>
+            </div>
+            <figcaption>
+              <h3>Tube grasping on a mirrored tabletop</h3>
+              <p>Matched VPP2 tube-insertion runs on the original tabletop (left) and mirrored tabletop (right). The lower row shows the right wrist during grasping.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="citation" class="section" aria-labelledby="citation-title">
+      <div class="section-heading">
+        <h2 id="citation-title">Citation</h2>
+        <button type="button" class="copy-citation" id="copy-citation" hidden>Copy BibTeX</button>
+      </div>
+      <pre class="citation-code"><code id="bibtex">@misc{liu-zhang-mirror-test,
+  title  = {{Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies}},
+  author = {Liu, Xuanchen and Zhang, Hejun and Dong, Boxuan and Wu, Ying
+            and Li, Heshuai and Gao, Wen and Tian, Yonghong and Yu, Weihao}
+}</code></pre>
+      <p id="citation-status" class="caption citation-status" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>RoboDojo-Mirror · Peking University</span>
+    <a href="#top">Back to top</a>
+  </footer>
+</body>
+</html>
