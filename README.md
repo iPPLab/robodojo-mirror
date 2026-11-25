@@ -178,14 +178,11 @@ Success rate (%) across the paper task set. Mean drop is the no-mirror success r
 ## Citation
 
 ```bibtex
-@misc{liu-zhang-mirror-test,
+@article{liu-zhang-mirror-test,
   title  = {{Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies}},
   author = {Liu, Xuanchen and Zhang, Hejun and Dong, Boxuan and Wu, Ying
             and Li, Heshuai and Gao, Wen and Tian, Yonghong and Yu, Weihao},
-  year = {2026},
-  eprint = {2611.33010},
-  archivePrefix = {arXiv},
-  primaryClass = {cs.CV},
-  url = {https://arxiv.org/abs/2611.33010}
+  journal = {arXiv preprint arXiv:2611.33010},
+  year = {2026}
 }
 ```
