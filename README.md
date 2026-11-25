@@ -186,3 +186,7 @@ Success rate (%) across the paper task set. Mean drop is the no-mirror success r
   year = {2026}
 }
 ```
+
+## Acknowledgments
+
+This research was supported in part with Cloud TPUs from Google's TPU Research Cloud (TRC).
