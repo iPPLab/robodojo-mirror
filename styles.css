@@ -46,6 +46,19 @@ button, select { font: inherit; }
 .lab > span { color: #eee; font-size: .85em; }
 .contribution { margin-top: .24rem; }
 .contribution small { font-size: .86em; }
+.hero-links {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: .65rem; margin-top: 1rem;
+}
+.hero-links a {
+  display: inline-grid; place-items: center;
+  min-width: 5.5rem; min-height: 2.75rem; padding: .35rem .85rem;
+  border: 1px solid #ffffff88; border-radius: .25rem;
+  background: #0004; color: #fff;
+  font-size: .9rem; font-weight: 650; text-decoration: none;
+}
+.hero-links a:hover { background: #fff; color: var(--ink); }
+.hero-links a:focus-visible { outline-color: #fff; }
 .hero {
   position: relative;
   isolation: isolate; overflow: hidden;
