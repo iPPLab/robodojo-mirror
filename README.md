@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://ipplab.github.io/robodojo-mirror/"><img src="https://img.shields.io/badge/Project-Website-366C91" alt="RoboDojo-Mirror project page"></a>
+  <a href="https://arxiv.org/abs/2611.33010"><img src="https://img.shields.io/badge/arXiv-2611.33010-B31B1B" alt="arXiv:2611.33010"></a>
   <a href="#video"><img src="https://img.shields.io/badge/Video-Watch-A44949" alt="Watch the project video"></a>
   <a href="#usage"><img src="https://img.shields.io/badge/Benchmark-RoboDojo--Mirror-437358" alt="RoboDojo-Mirror benchmark"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-626C76" alt="MIT License"></a>
@@ -180,6 +181,11 @@ Success rate (%) across the paper task set. Mean drop is the no-mirror success r
 @misc{liu-zhang-mirror-test,
   title  = {{Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies}},
   author = {Liu, Xuanchen and Zhang, Hejun and Dong, Boxuan and Wu, Ying
-            and Li, Heshuai and Gao, Wen and Tian, Yonghong and Yu, Weihao}
+            and Li, Heshuai and Gao, Wen and Tian, Yonghong and Yu, Weihao},
+  year = {2026},
+  eprint = {2611.33010},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  url = {https://arxiv.org/abs/2611.33010}
 }
 ```
