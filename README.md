@@ -14,12 +14,12 @@
 
 <p align="center">
   Xuanchen Liu<sup>*</sup>, Hejun Zhang<sup>*</sup>, Boxuan Dong, Ying Wu,<br>
-  Heshuai Li, Wen Gao, Yonghong Tian, Weihao Yu
+  Heshuai Li, Wen Gao, Yonghong Tian, Weihao Yu<sup>†</sup>
 </p>
 
 <p align="center">
   Peking University<br>
-  <sup>*</sup>Equal contribution
+  <sup>*</sup>Equal contribution · <sup>†</sup>Corresponding author
 </p>
 
 ## Overview
